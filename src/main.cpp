@@ -14,12 +14,13 @@ void OnProgramLoad(const char *pluginName, const char *mainFilePath)
     logger = new Logger(pluginName, mainFilePath);
 }
 
-void OnClientConnect(Player *player)
+bool OnClientConnect(Player *player)
 {
     print("------------------------------------------------ \n");
     print("%s s-a conectat pe server! \n", player->GetName());
     print("------------------------------------------------ \n");
     logger->Write(LOGLEVEL_COMMON, "[%s] %s s-a conectat pe server!", __DATE__, player->GetName());
+    return true;
 }
 
 void OnClientDisconnect(Player *player)
