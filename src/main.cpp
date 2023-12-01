@@ -11,11 +11,12 @@ void OnProgramLoad(const char *pluginName, const char *mainFilePath)
     server = new Server();
 }
 
-void OnClientConnected(Player *player)
+bool OnClientConnect(Player *player)
 {
     print("------------------------------------------------ \n");
     print("%s s-a conectat pe server! \n", player->GetName());
     print("------------------------------------------------ \n");
+    return true;
 }
 
 void OnPluginStart()
