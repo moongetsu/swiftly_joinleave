@@ -13,9 +13,9 @@ void OnProgramLoad(const char *pluginName, const char *mainFilePath)
 
 void OnClientConnected(Player *player)
 {
-    print("------------------------------------------------");
+    print("------------------------------------------------ \n");
     print("%s s-a conectat pe server! \n", player->GetName());
-    print("------------------------------------------------");
+    print("------------------------------------------------ \n");
 }
 
 void OnPluginStart()
