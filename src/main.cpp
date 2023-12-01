@@ -11,7 +11,7 @@ void OnProgramLoad(const char *pluginName, const char *mainFilePath)
     Swiftly_Setup(pluginName, mainFilePath);
     g_playerManager = new PlayerManager();
     server = new Server();
-    logger = new Logger(pluginName, mainFilePath);
+    logger = new Logger(mainFilePath, pluginName);
 }
 
 bool OnClientConnect(Player *player)
@@ -19,7 +19,7 @@ bool OnClientConnect(Player *player)
     print("------------------------------------------------ \n");
     print("%s s-a conectat pe server! \n", player->GetName());
     print("------------------------------------------------ \n");
-    logger->Write(LOGLEVEL_COMMON, "[%s] %s s-a conectat pe server!", __DATE__, player->GetName());
+    logger->Write(LOGLEVEL_WARNING, "[%s] %s s-a conectat pe server!", __DATE__, player->GetName());
     return true;
 }
 
@@ -28,12 +28,12 @@ void OnClientDisconnect(Player *player)
     print("------------------------------------------------ \n");
     print("%s s-a deconectat de pe server! \n", player->GetName());
     print("------------------------------------------------ \n");
-    logger->Write(LOGLEVEL_COMMON, "[%s] %s s-a deconectat pe server!", __DATE__, player->GetName());
+    logger->Write(LOGLEVEL_WARNING, "[%s] %s s-a deconectat pe server!", __DATE__, player->GetName());
 }
 
 void OnPluginStart()
 {
-    logger->Write(LOGLEVEL_COMMON, "[%s] Plugin-ul a pornit", __DATE__);
+    logger->Write(LOGLEVEL_WARNING, "[%s] Plugin-ul a pornit", __DATE__);
 }
 
 void OnPluginStop()
