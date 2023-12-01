@@ -19,20 +19,20 @@ void OnProgramLoad(const char *pluginName, const char *mainFilePath)
 
 bool OnClientConnect(Player *player)
 {
-    player->SendMsg(HUD_PRINTTALK, "%s %s s-a conectat pe server! \n", config->Fetch<const char*>("joinleave.prefix"), player->GetName());
-    logger->Write(LOGLEVEL_COMMON, "[%s] %s s-a conectat pe server!", __DATE__, player->GetName());
+    player->SendMsg(HUD_PRINTTALK, "%s %s has connected on the server! \n", config->Fetch<const char*>("joinleave.prefix"), player->GetName());
+    logger->Write(LOGLEVEL_COMMON, "[%s] %s has connected on the server!", __DATE__, player->GetName());
     return true;
 }
 
 void OnClientDisconnect(Player *player)
 {
-    player->SendMsg(HUD_PRINTTALK, "%s %s s-a deconectat de pe server! \n", config->Fetch<const char*>("joinleave.prefix"), player->GetName());
-    logger->Write(LOGLEVEL_COMMON, "[%s] %s s-a deconectat pe server!", __DATE__, player->GetName());
+    player->SendMsg(HUD_PRINTTALK, "%s %s has disconnected from the server! \n", config->Fetch<const char*>("joinleave.prefix"), player->GetName());
+    logger->Write(LOGLEVEL_COMMON, "[%s] %s has disconnected from the server!", __DATE__, player->GetName());
 }
 
 void OnPluginStart()
 {
-    logger->Write(LOGLEVEL_COMMON, "[%s] Plugin-ul a pornit", __DATE__);
+    logger->Write(LOGLEVEL_COMMON, "[%s] The plugin started the log session.", __DATE__);
 }
 
 void OnPluginStop()
