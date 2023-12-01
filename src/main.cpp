@@ -16,18 +16,14 @@ void OnProgramLoad(const char *pluginName, const char *mainFilePath)
 
 bool OnClientConnect(Player *player)
 {
-    print("------------------------------------------------ \n");
-    print("%s s-a conectat pe server! \n", player->GetName());
-    print("------------------------------------------------ \n");
+    player->SendMsg(HUD_PRINTTALK, "%s s-a conectat pe server! \n", player->GetName());
     logger->Write(LOGLEVEL_COMMON, "[%s] %s s-a conectat pe server!", __DATE__, player->GetName());
     return true;
 }
 
 void OnClientDisconnect(Player *player)
 {
-    print("------------------------------------------------ \n");
-    print("%s s-a deconectat de pe server! \n", player->GetName());
-    print("------------------------------------------------ \n");
+    player->SendMsg(HUD_PRINTTALK, "%s s-a deconectat de pe server! \n", player->GetName());
     logger->Write(LOGLEVEL_COMMON, "[%s] %s s-a deconectat pe server!", __DATE__, player->GetName());
 }
 
