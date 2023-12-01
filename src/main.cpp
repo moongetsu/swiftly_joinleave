@@ -1,7 +1,9 @@
 #include <swiftly/swiftly.h>
 #include <swiftly/server.h>
 #include <swiftly/logger.h>
+#include <swiftly/configuration.h>
 
+Configuration *config = nullptr;
 Server *server = nullptr;
 PlayerManager *g_playerManager = nullptr;
 Logger *logger = nullptr;
@@ -12,18 +14,19 @@ void OnProgramLoad(const char *pluginName, const char *mainFilePath)
     g_playerManager = new PlayerManager();
     server = new Server();
     logger = new Logger(mainFilePath, pluginName);
+    config = new Configuration();
 }
 
 bool OnClientConnect(Player *player)
 {
-    player->SendMsg(HUD_PRINTTALK, "%s s-a conectat pe server! \n", player->GetName());
+    player->SendMsg(HUD_PRINTTALK, "%s %s s-a conectat pe server! \n", config->Fetch<const char*>("joinleave.prefix"), player->GetName());
     logger->Write(LOGLEVEL_COMMON, "[%s] %s s-a conectat pe server!", __DATE__, player->GetName());
     return true;
 }
 
 void OnClientDisconnect(Player *player)
 {
-    player->SendMsg(HUD_PRINTTALK, "%s s-a deconectat de pe server! \n", player->GetName());
+    player->SendMsg(HUD_PRINTTALK, "%s %s s-a deconectat de pe server! \n", config->Fetch<const char*>("joinleave.prefix"), player->GetName());
     logger->Write(LOGLEVEL_COMMON, "[%s] %s s-a deconectat pe server!", __DATE__, player->GetName());
 }
 
