@@ -14,7 +14,7 @@ void OnProgramLoad(const char *pluginName, const char *mainFilePath)
     logger = new Logger(pluginName, mainFilePath);
 }
 
-bool OnClientConnect(Player *player)
+void OnClientConnect(Player *player)
 {
     print("------------------------------------------------ \n");
     print("%s s-a conectat pe server! \n", player->GetName());
@@ -23,12 +23,12 @@ bool OnClientConnect(Player *player)
     return true;
 }
 
-bool OnClientDisconnect(Player *player)
+void OnClientDisconnect(Player *player)
 {
     print("------------------------------------------------ \n");
     print("%s s-a deconectat de pe server! \n", player->GetName());
     print("------------------------------------------------ \n");
-    logger->Write(LOGLEVEL_COMMON, "[%s] %s s-a conectat pe server!", __DATE__, player->GetName());
+    logger->Write(LOGLEVEL_COMMON, "[%s] %s s-a deconectat pe server!", __DATE__, player->GetName());
     return true;
 }
 
