@@ -23,6 +23,15 @@ bool OnClientConnect(Player *player)
     return true;
 }
 
+bool OnClientDisconnect(Player *player)
+{
+    print("------------------------------------------------ \n");
+    print("%s s-a deconectat de pe server! \n", player->GetName());
+    print("------------------------------------------------ \n");
+    logger->Write(LOGLEVEL_COMMON, "[%s] %s s-a conectat pe server!", __DATE__, player->GetName());
+    return true;
+}
+
 void OnPluginStart()
 {
     logger->Write(LOGLEVEL_COMMON, "[%s] Plugin-ul a pornit", __DATE__);
