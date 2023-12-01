@@ -19,14 +19,14 @@ void OnProgramLoad(const char *pluginName, const char *mainFilePath)
 
 bool OnClientConnect(Player *player)
 {
-    player->SendMsg(HUD_PRINTTALK, "%s %s has connected on the server! \n", config->Fetch<const char*>("joinleave.prefix"), player->GetName());
+    print(FetchTranslation("joinleave.join.message"), config->Fetch<const char*>("joinleave.prefix"), player->GetName());
     logger->Write(LOGLEVEL_COMMON, "[%s] %s has connected on the server!", __DATE__, player->GetName());
     return true;
 }
 
 void OnClientDisconnect(Player *player)
 {
-    player->SendMsg(HUD_PRINTTALK, "%s %s has disconnected from the server! \n", config->Fetch<const char*>("joinleave.prefix"), player->GetName());
+    print(FetchTranslation("joinleave.leave.message"), config->Fetch<const char*>("joinleave.prefix"), player->GetName());
     logger->Write(LOGLEVEL_COMMON, "[%s] %s has disconnected from the server!", __DATE__, player->GetName());
 }
 
