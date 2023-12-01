@@ -1,8 +1,6 @@
 #include <swiftly/swiftly.h>
 #include <swiftly/server.h>
-#include <swiftly/logger.h>
 
-Logger *logger = nullptr;
 Server *server = nullptr;
 PlayerManager *g_playerManager = nullptr;
 
@@ -11,18 +9,17 @@ void OnProgramLoad(const char *pluginName, const char *mainFilePath)
     Swiftly_Setup(pluginName, mainFilePath);
     g_playerManager = new PlayerManager();
     server = new Server();
-    logger = new Logger(pluginName, mainFilePath);
 }
 
 void OnClientConnected(Player *player)
 {
+    print("------------------------------------------------");
     print("%s s-a conectat pe server! \n", player->GetName());
-    logger->Write(LOGLEVEL_COMMON, "[%s] %s s-a conectat pe server!", __DATE__, player->GetName());
+    print("------------------------------------------------");
 }
 
 void OnPluginStart()
 {
-    logger->Write(LOGLEVEL_COMMON, "[%s] Plugin-ul a pornit", __DATE__);
 }
 
 void OnPluginStop()
