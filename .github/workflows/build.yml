@@ -25,7 +25,7 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v4
               with:
-                  path: swiftly_joinleave
+                  path: addons/swiftly/plugins/swiftly_joinleave
                   submodules: recursive
 
             - name: Checkout Swiftly
@@ -33,27 +33,27 @@ jobs:
               with:
                   repository: swiftly-solution/swiftly
                   ref: master
-                  path: swiftly
+                  path: addons/swiftly
 
             - name: Installing Swiftly Scripting files
               run: |
-                  cd swiftly; mv plugin_files/scripting/* ..; cd ..
+                  cd addons/swiftly; mv plugin_files/scripting/* ..; cd ..
 
             - name: Build
-              working-directory: swiftly_joinleave
+              working-directory: addons/swiftly/plugins/swiftly_joinleave
               run: |
-                  make
+                  make OUTPUT_DIR=output
 
             - name: Upload Files - Linux
               if: matrix.os == 'ubuntu-latest'
               uses: actions/upload-artifact@v3
               with:
                   name: swiftly_joinleave Plugin - Linux
-                  path: ${{ github.workspace }}/swiftly_joinleave/output/swiftly_joinleave.so
+                  path: ${{ github.workspace }}/addons/swiftly/plugins/swiftly_joinleave/output/swiftly_joinleave.so
 
             - name: Upload Files - Windows
               if: matrix.os == 'windows-latest'
               uses: actions/upload-artifact@v3
               with:
                   name: swiftly_joinleave Plugin - Windows
-                  path: ${{ github.workspace }}/swiftly_joinleave/output/swiftly_joinleave.dll
+                  path: ${{ github.workspace }}/addons/swiftly/plugins/swiftly_joinleave/output/swiftly_joinleave.dll
