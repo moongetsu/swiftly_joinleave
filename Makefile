@@ -1,61 +1,51 @@
-name: "swiftly_joinleave Compiler"
+CC_COMMAND = gcc
+CXX_COMMAND = g++
+PROJECT_NAME = swiftly_joinleave
 
-on:
-  push:
-    branches:
-      - "*"
-  pull_request:
+CURRENT_PATH=$(realpath .)
+BEHIND_PATH=$(realpath ..)
+SRC_DIR := src
+BUILD_DIR := output
+TEMP_DIR := temp
+INCLUDES_FOLDER := $(CURRENT_PATH)/includes
 
-jobs:
-  build:
-    name: Build
-    runs-on: ${{ matrix.os }}
+CC_FLAGS = -I"$(INCLUDES_FOLDER)" -I"$(BEHIND_PATH)/includes"
+CXX_FLAGS := -I"$(INCLUDES_FOLDER)" -I"$(BEHIND_PATH)/includes" -lpthread -L"$(BEHIND_PATH)/lib" -std=c++17
 
-    container: ${{ matrix.container }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest, windows-latest]
-        include:
-          - os: windows-latest
-          - os: ubuntu-latest
-            container: registry.gitlab.steamos.cloud/steamrt/sniper/sdk
+ifneq ($(OS),Windows_NT)
+	CXX_FLAGS := $(CXX_FLAGS) -fPIC
+endif
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          path: addons/swiftly/plugins/swiftly_joinleave
-          submodules: recursive
+rwildcard=$(wildcard $1$2) $(foreach d,$(wildcard $1*),$(call rwildcard,$d/,$2))
 
-      - name: Checkout Swiftly
-        uses: actions/checkout@v4
-        with:
-          repository: swiftly-solution/swiftly
-          ref: master
-          path: addons/swiftly
+SRC_FILES := $(call rwildcard,$(SRC_DIR),*.cpp)
+TEMP_OBJS_FILES = $(subst /,_,$(patsubst %.cpp, %.o, $(SRC_FILES)))
+OBJS_FILES = $(patsubst %o,$(TEMP_DIR)/%o,$(TEMP_OBJS_FILES))
 
-      - name: Installing Swiftly Scripting files
-        run: |
-          cd addons/swiftly
-          mv plugin_files/scripting/* ..
-          cd ..
+define COMPILE_FILE
+	$(CXX_COMMAND) $(CXX_FLAGS) -o $(TEMP_DIR)/$(subst /,_,$(subst .cpp,.o,$(1))) -c $(1)
+endef
 
-      - name: Build
-        working-directory: addons/swiftly/plugins/swiftly_joinleave
-        run: |
-          make
+build:
+ifeq ($(OS),Windows_NT)
+	@rd /s /q $(BUILD_DIR) 2>NUL || (echo)
+	@rd /s /q $(TEMP_DIR) 2>NUL || (echo)
+else
+	@rm -rf $(BUILD_DIR)
+	@rm -rf $(TEMP_DIR)
+endif
+	mkdir $(TEMP_DIR)
+	$(foreach src,$(SRC_FILES),$(call COMPILE_FILE,$(src)))
+	mkdir $(BUILD_DIR)
 
-      - name: Upload Files - Linux
-        if: matrix.os == 'ubuntu-latest'
-        uses: actions/upload-artifact@v3
-        with:
-          name: swiftly_joinleave Plugin - Linux
-          path: ${{ github.workspace }}/addons/swiftly/plugins/swiftly_joinleave/output/swiftly_joinleave.so
+ifeq ($(OS),Windows_NT)
+	$(CXX_COMMAND) -shared $(CXX_FLAGS) -o $(BUILD_DIR)/$(PROJECT_NAME).dll $(OBJS_FILES)
+else
+	$(CXX_COMMAND) -shared $(CXX_FLAGS) -o $(BUILD_DIR)/$(PROJECT_NAME).so $(OBJS_FILES)
+endif
 
-      - name: Upload Files - Windows
-        if: matrix.os == 'windows-latest'
-        uses: actions/upload-artifact@v3
-        with:
-          name: swiftly_joinleave Plugin - Windows
-          path: ${{ github.workspace }}/addons/swiftly/plugins/swiftly_joinleave/output/swiftly_joinleave.dll
+ifeq ($(OS),Windows_NT)
+	@rd /s /q $(TEMP_DIR) 2>NUL || (echo)
+else
+	@rm -rf $(TEMP_DIR)
+endif
