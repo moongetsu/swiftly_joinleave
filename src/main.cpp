@@ -34,11 +34,12 @@ void OnClientDisconnect(Player *player)
 
 void OnPluginStart()
 {
-    logger->Write(LOGLEVEL_COMMON, "The plugin started the log session.");
+    logger->Write(LOGLEVEL_WARNING, "The plugin started the log session.");
 }
 
 void OnPluginStop()
 {
+    logger->Write(LOGLEVEL_WARNING, "The plugin has stopped.");
 }
 
 const char *GetPluginWebsite()
