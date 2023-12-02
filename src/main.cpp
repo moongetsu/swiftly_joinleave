@@ -20,6 +20,7 @@ void OnProgramLoad(const char *pluginName, const char *mainFilePath)
 bool OnClientConnect(Player *player)    
 {
     g_playerManager->SendMsg(HUD_PRINTTALK, FetchTranslation("joinleave.join.message"), config->Fetch<const char*>("joinleave.prefix"), player->GetName());
+    print(FetchTranslation("joinleave.join.message"), config->Fetch<const char*>("joinleave.prefix"), player->GetName());
     logger->Write(LOGLEVEL_COMMON, "%s has connected on the server!", player->GetName());
     return true;    
 }
@@ -27,6 +28,7 @@ bool OnClientConnect(Player *player)
 void OnClientDisconnect(Player *player)
 {
     g_playerManager->SendMsg(HUD_PRINTTALK, FetchTranslation("joinleave.leave.message"), config->Fetch<const char*>("joinleave.prefix"), player->GetName());
+    print(FetchTranslation("joinleave.leave.message"), config->Fetch<const char*>("joinleave.prefix"), player->GetName());
     logger->Write(LOGLEVEL_COMMON, "%s has disconnected from the server!", player->GetName());
 }
 
