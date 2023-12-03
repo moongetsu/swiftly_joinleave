@@ -25,7 +25,7 @@
 
 ### Installation 👀
 
-1. Download the newest ![release](https://github.com/moongetsu/swiftly_joinleave/releases).
+1. Download the newest [release](https://github.com/moongetsu/swiftly_joinleave/releases).
 2. Everything is drag & drop, so i think you can do it!
 
 ### Configuring the plugin 🧐
@@ -41,4 +41,4 @@
 5. Open a Pull Request
 
 ### Have ideas? 💡
-Join ![Swiftly Discord Server](https://discord.gg/ESKNDx2CNB)!
+Join [Swiftly Discord Server](https://discord.gg/ESKNDx2CNB)!
