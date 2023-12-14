@@ -10,7 +10,6 @@
     A plugin for Swiftly that prints a message when a player connects on/disconnects from the server.
     <br/>
     <br/>
-    <br/>
     <a href="https://github.com/moongetsu/swiftly_joinleave">View Demo</a>
     .
     <a href="https://github.com/moongetsu/swiftly_joinleave/issues">Report Bug</a>
