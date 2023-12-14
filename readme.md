@@ -11,7 +11,6 @@
     <br/>
     <br/>
     <br/>
-    <br/>
     <a href="https://github.com/moongetsu/swiftly_joinleave">View Demo</a>
     .
     <a href="https://github.com/moongetsu/swiftly_joinleave/issues">Report Bug</a>
