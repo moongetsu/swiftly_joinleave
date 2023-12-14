@@ -49,11 +49,11 @@ jobs:
               uses: actions/upload-artifact@v3
               with:
                   name: swiftly_joinleave Plugin - Linux
-                  path: ${{ github.workspace }}/swiftly_joinleave/output/swiftly_joinleave.so
+                  path: ${{ github.workspace }}/swiftly_joinleave/output
 
             - name: Upload Files - Windows
               if: matrix.os == 'windows-latest'
               uses: actions/upload-artifact@v3
               with:
                   name: swiftly_joinleave Plugin - Windows
-                  path: ${{ github.workspace }}/swiftly_joinleave/output/swiftly_joinleave.dll
+                  path: ${{ github.workspace }}/swiftly_joinleave/output
