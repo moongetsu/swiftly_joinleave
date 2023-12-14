@@ -29,7 +29,7 @@
 
 ### Configuring the plugin 🧐
 
-* After installing the plugin, you need to change the prefix from `addons/swiftly/configs/plugins` and if you want, you can change the messages from `addons/swiftly/translations`.
+* After installing the plugin, you can change the messages from `addons/swiftly/translations`.
 
 ### Preview 📷
 ![image](https://github.com/moongetsu/swiftly_joinleave/assets/111883135/1fc16dfd-43bf-4071-aa5c-6c6c0e9e1cb2)
