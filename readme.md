@@ -7,10 +7,9 @@
   <h3 align="center">[Swiftly] Join/Leave messages</h3>
 
   <p align="center">
-    A simple plugin for Swiftly that prints a message when a player connects on/disconnects from the server.
+    A plugin for Swiftly that prints a message when a player connects on/disconnects from the server.
     <br/>
     <br/>
-    <a href="https://github.com/moongetsu/swiftly_joinleave"><strong>Explore the docs »</strong></a>
     <br/>
     <br/>
     <a href="https://github.com/moongetsu/swiftly_joinleave">View Demo</a>
@@ -31,6 +30,10 @@
 ### Configuring the plugin 🧐
 
 * After installing the plugin, you need to change the prefix from `addons/swiftly/configs/plugins` and if you want, you can change the messages from `addons/swiftly/translations`.
+
+### Preview 📷
+![image](https://github.com/moongetsu/swiftly_joinleave/assets/111883135/1fc16dfd-43bf-4071-aa5c-6c6c0e9e1cb2)
+![image](https://github.com/moongetsu/swiftly_joinleave/assets/111883135/3aaa6e4b-7631-4693-be34-acd74cea5349)
 
 ### Creating A Pull Request 😃
 
