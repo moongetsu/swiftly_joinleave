@@ -1,0 +1,10 @@
+{
+    "join.message": {
+        "en": "{lime}[Swiftly] %s {default}has {lime}connected {default}on the server!",
+        "ro": "{lime}[Swiftly] %s {default}s-a {lime}conectat {default}pe server!"
+    },
+    "leave.message": {
+        "en": "{darkred}[Swiftly] %s {default}has {darkred}disconnected {default}from the server!",
+        "ro": "{darkred}[Swiftly] %s {default}s-a {darkred}deconectat {default}de pe server!"
+    }
+}
