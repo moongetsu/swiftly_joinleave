@@ -33,7 +33,8 @@
 
 ### Preview 📷
 ![image](https://github.com/moongetsu/swiftly_joinleave/assets/111883135/1fc16dfd-43bf-4071-aa5c-6c6c0e9e1cb2)
-![image](https://github.com/moongetsu/swiftly_joinleave/assets/111883135/3aaa6e4b-7631-4693-be34-acd74cea5349)
+![image](https://github.com/moongetsu/swiftly_joinleave/assets/111883135/67ad3a3f-9146-4a17-b508-3985dc59a272)
+
 
 ### Creating A Pull Request 😃
 
