@@ -22,18 +22,18 @@ bool OnClientConnect(Player *player)
 {
     if (!player->IsFakeClient())
     {
-        g_playerManager->SendMsg(HUD_PRINTTALK, FetchTranslation("joinleave.join.message"), player->GetName());
-        logger->Write(LOGLEVEL_COMMON, "%s has connected on the server!", player->GetName());
-        return true;  
+        g_playerManager->SendMsg(HUD_PRINTTALK, FetchTranslation("joinleave.join.chatmessage"), player->GetName());
+        logger->Write(LOGLEVEL_COMMON, FetchTranslation("joinleave.join.logmessage"), player->GetName());
     }  
+    return true;  
 }
 
 void OnClientDisconnect(Player *player)
 {
     if (!player->IsFakeClient())
     {
-        g_playerManager->SendMsg(HUD_PRINTTALK, FetchTranslation("joinleave.leave.message"), player->GetName());
-        logger->Write(LOGLEVEL_COMMON, "%s has disconnected from the server!", player->GetName());
+        g_playerManager->SendMsg(HUD_PRINTTALK, FetchTranslation("joinleave.leave.chatmessage"), player->GetName());
+        logger->Write(LOGLEVEL_COMMON, FetchTranslation("joinleave.leave.logmessage"), player->GetName());
     }
 }
 
